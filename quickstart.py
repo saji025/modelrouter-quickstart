@@ -1,26 +1,20 @@
-import os
 from openai import OpenAI
 
-# ModelRouter Quickstart Example
-# 1. Register / Login at https://modelrouter.web.id/login
-# 2. Get your API Key at https://modelrouter.web.id/token
-
+# Inisialisasi client ModelRouter (OpenAI-compatible)
+# Dapatkan API Key di https://modelrouter.id/keys
 client = OpenAI(
-    api_key=os.environ.get("MODELROUTER_API_KEY", "YOUR_API_KEY_HERE"),
-    base_url="https://modelrouter.web.id/v1"
+    api_key="YOUR_MODELROUTER_API_KEY",
+    base_url="https://modelrouter.id/v1"
 )
 
-def test_modelrouter():
-    print("[*] Sending request to ModelRouter...")
-    response = client.chat.completions.create(
-        model="deepseek-v4-flash", # or 'hy3-free', 'gemini-3.8-flash', 'claude-sonnet-4.6'
-        messages=[
-            {"role": "user", "content": "Halo! Berikan 3 tips coding efisien."}
-        ],
-        temperature=0.7
-    )
-    print("\n--- Response ---")
-    print(response.choices[0].message.content)
+# Contoh memanggil model DeepSeek V4.1 Flash (Bansos AI / Free Tier)
+response = client.chat.completions.create(
+    model="deepseek-v4.1-flash",
+    messages=[
+        {"role": "system", "content": "Kamu adalah asisten AI yang ramah dan to the point."},
+        {"role": "user", "content": "Halo ModelRouter! Buatkan fungsi Python untuk membalik string."}
+    ],
+    temperature=0.7
+)
 
-if __name__ == "__main__":
-    test_modelrouter()
+print(response.choices[0].message.content)
