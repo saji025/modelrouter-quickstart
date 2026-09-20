@@ -103,6 +103,7 @@ print(response.choices[0].message.content)
 
 - 🌐 Website: [https://modelrouter.id](https://modelrouter.id)
 - 🎁 Bansos AI: [https://modelrouter.id/bansos-ai](https://modelrouter.id/bansos-ai)
+- 🔀 Alternatif OpenRouter: [https://modelrouter.id/alternatif-openrouter](https://modelrouter.id/alternatif-openrouter)
 - 📋 Katalog Model Lengkap: [https://modelrouter.id/models](https://modelrouter.id/models)
 - 📖 Dokumentasi Lengkap: [https://modelrouter.id/docs](https://modelrouter.id/docs)
 - 💬 Bantuan & CS: [https://modelrouter.id/support](https://modelrouter.id/support)
