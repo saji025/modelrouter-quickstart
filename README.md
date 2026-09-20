@@ -13,7 +13,7 @@ Panduan resmi integrasi developer untuk **[ModelRouter](https://modelrouter.id)*
 
 ModelRouter menyediakan kuota uji coba gratis (Bansos AI) bagi para developer, programmer, dan mahasiswa di Indonesia:
 - **100 Request Uji Coba Gratis:** Langsung aktif begitu mendaftar tanpa syarat kartu kredit.
-- **Model yang Didukung:** DeepSeek V4.1 Flash, MiMo V2.5, Qwen 3.8 Flash, dan TH Orchestra.
+- **Model yang Didukung:** DeepSeek V4.1 Flash, MiMo V2.5, Qwen 3.8 Flash, dan Atria Dawn.
 - **Klaim Sekarang:** Buka **[https://modelrouter.id/bansos-ai](https://modelrouter.id/bansos-ai)** untuk panduan klaim instan.
 
 ---
