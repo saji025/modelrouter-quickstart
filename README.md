@@ -1,11 +1,11 @@
 # ModelRouter AI Gateway - Panduan Integrasi & Setup Cepat (Indonesia)
 
-[![ModelRouter](https://img.shields.io/badge/Platform-ModelRouter-7c5cff.svg)](https://modelrouter.id)
-[![Base URL](https://img.shields.io/badge/OpenAI--Compatible-https%3A%2F%2Fmodelrouter.id%2Fv1-22d3ee.svg)](https://modelrouter.id)
-[![Payment](https://img.shields.io/badge/Deposit-QRIS%2024%2F7-4ade80.svg)](https://modelrouter.id/billing)
-[![Bansos AI](https://img.shields.io/badge/Bansos%20AI-Free%20Tier-f59e0b.svg)](https://modelrouter.id/bansos-ai)
+[![ModelRouter](https://img.shields.io/badge/ModelRouter-Official_Website-indigo?style=for-the-badge)](https://modelrouter.id)
+[![Bansos AI](https://img.shields.io/badge/Bansos_AI-Free_100_Req-amber?style=for-the-badge)](https://modelrouter.id/bansos-ai)
+[![Models](https://img.shields.io/badge/Models-Frontier_Catalog-emerald?style=for-the-badge)](https://modelrouter.id/models)
+[![Billing](https://img.shields.io/badge/Topup-QRIS_Instant-blue?style=for-the-badge)](https://modelrouter.id/billing)
 
-Panduan resmi integrasi developer untuk **[ModelRouter](https://modelrouter.id)** — Universal AI API Gateway di Indonesia yang kompatibel penuh dengan OpenAI SDK untuk mengakses puluhan model frontier dunia seperti Claude Opus 5, Claude Sonnet 4.6, GPT-6 Astra, DeepSeek V4.1, dan Gemini 3.8 Flash menggunakan satu saldo Rupiah.
+Dokumentasi resmi dan panduan cepat integrasi **[ModelRouter](https://modelrouter.id)** — Universal AI API Gateway di Indonesia. Satu endpoint terpadu untuk mengakses puluhan model AI frontier dunia (Claude Opus 5, Claude Sonnet 4.6, GPT-6 Astra, DeepSeek V4.1, Gemini 3.8 Flash, MiMo V2.5) menggunakan **satu saldo Rupiah (QRIS otomatis 24/7)** tanpa perlu kartu kredit luar negeri.
 
 ---
 
@@ -23,36 +23,64 @@ ModelRouter menyediakan kuota uji coba gratis (Bansos AI) bagi para developer, p
 - **Tanpa Kartu Kredit Internasional:** Akses API Claude, GPT, dan DeepSeek tanpa terhalang pembayaran debit/kredit luar negeri.
 - **Top-Up Instan Otomatis via QRIS 24/7:** Pengisian saldo instan mulai dari **Rp 5.000** via GoPay, OVO, DANA, ShopeePay, BCA, Mandiri, BRI, BNI, dan seluruh bank.
 - **Login 1-Tap Cepat:** Masuk langsung dengan **Google**, **GitHub**, atau email aktif di [https://modelrouter.id/login](https://modelrouter.id/login).
-- **Prompt Caching Diskon hingga 95%:** Hemat biaya token secara drastis untuk coding agent (Cursor, Cline, Roo Code, Aider).
-- **Satu Endpoint untuk Semua Model:** Cukup arahkan Base URL ke `https://modelrouter.id/v1`.
+- **100% OpenAI & Anthropic SDK Compatible:** Cukup ganti `base_url` ke `https://modelrouter.id/v1`.
+- **Hemat Biaya hingga 95%:** Didukung otomatis prompt caching untuk model reasoning dan coding.
 
 ---
 
-## 🚀 Quickstart (Python)
+## 💻 Panduan Integrasi Tool & Coding Agent
 
-Instal SDK resmi OpenAI:
+### 1. Cursor AI Editor
+1. Buka **Cursor Settings** (`Ctrl + Shift + J` / `Cmd + ,`).
+2. Pilih menu **Models**.
+3. Di bagian **OpenAI API Key**, masukkan API Key ModelRouter kamu (`sk-mod...`).
+4. Pada kolom **Override OpenAI Base URL**, masukkan:
+   ```
+   https://modelrouter.id/v1
+   ```
+5. Tambahkan model yang ingin digunakan: `deepseek-v4.1-flash`, `claude-sonnet-4.6`, `claude-opus-5`, dll.
 
-```bash
-pip install openai
-```
+### 2. Hermes Agent (Nous Research)
+1. Buka konfigurasi Hermes di `~/.hermes/config.yaml`:
+   ```yaml
+   model: "deepseek-v4.1-flash"
+   provider: "openai-api"
+   openai_api:
+     base_url: "https://modelrouter.id/v1"
+     api_key: "sk-mod..."
+   ```
+2. Jalankan `hermes` di terminal. Semua tool-calling dan workflow akan langsung berjalan melalui ModelRouter.
 
-Buat file script Python (misal `main.py`):
+### 3. OpenCode
+1. Di konfigurasi provider OpenCode, pilih **OpenAI Compatible**.
+2. Masukkan Base URL: `https://modelrouter.id/v1`.
+3. Masukkan API Key ModelRouter kamu (`sk-mod...`).
+4. Pilih model: `deepseek-v4.1-flash` atau `claude-sonnet-4.6`.
+
+### 4. OpenClaw
+1. Buka pengaturan LLM OpenClaw.
+2. Konfigurasikan provider OpenAI Compatible:
+   - **Base URL:** `https://modelrouter.id/v1`
+   - **API Key:** `sk-mod...`
+   - **Model:** `deepseek-v4.1-flash`
+
+---
+
+## 🚀 Quickstart Python SDK
 
 ```python
 from openai import OpenAI
 
-# 1. Daftar dan buat API Key di: https://modelrouter.id/keys
 client = OpenAI(
-    api_key="sk-mod...",  # Masukkan API Key ModelRouter kamu
-    base_url="https://modelrouter.id/v1"
+    base_url="https://modelrouter.id/v1",
+    api_key="sk-mod-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # Ganti dengan API Key kamu
 )
 
-# 2. Panggil model pilihan kamu
 response = client.chat.completions.create(
-    model="deepseek-v4.1-flash",  # Pilihan: claude-sonnet-4.6, gemini-3.8-flash, mimo-v2.5, dll
+    model="deepseek-v4.1-flash", # atau "claude-sonnet-4.6", "gemini-3.8-flash"
     messages=[
-        {"role": "system", "content": "Kamu adalah asisten programmer yang cerdas dan to the point."},
-        {"role": "user", "content": "Jelaskan arsitektur API Gateway modern dalam 2 paragraf!"}
+        {"role": "system", "content": "Kamu adalah asisten AI handal untuk developer Indonesia."},
+        {"role": "user", "content": "Jelaskan arsitektur event-driven microservices secara ringkas."}
     ],
     temperature=0.7
 )
@@ -62,34 +90,20 @@ print(response.choices[0].message.content)
 
 ---
 
-## 💻 Panduan Setup di Cursor & Cline
+## 🌐 Endpoint & Spesifikasi
 
-### 1. Konfigurasi di Cursor AI
-1. Buka menu **Settings** di Cursor -> pilih tab **Models**.
-2. Masukkan API Key dari ModelRouter pada kolom **OpenAI API Key**.
-3. Aktifkan opsi **Override OpenAI Base URL** dan masukkan:
-   ```text
-   https://modelrouter.id/v1
-   ```
-4. Tambahkan model yang ingin digunakan:
-   - `claude-sonnet-4.6`
-   - `deepseek-v4.1-flash`
-   - `gemini-3.8-flash`
-   - `mimo-v2.5`
-
-### 2. Konfigurasi di Cline / Roo Code (VS Code)
-- **API Provider:** Pilih `OpenAI Compatible`
 - **Base URL:** `https://modelrouter.id/v1`
-- **API Key:** Masukkan token ModelRouter kamu
-- **Model ID:** Masukkan ID model pilihan (misal: `deepseek-v4.1-flash`)
+- **Chat Endpoint:** `https://modelrouter.id/v1/chat/completions`
+- **Models Catalog:** `https://modelrouter.id/v1/models`
+- **Header Autentikasi:** `Authorization: Bearer sk-mod...`
 
 ---
 
-## 📚 Tautan Resmi & Bantuan
+## 📚 Tautan Resmi
 
-- **Website Resmi:** [https://modelrouter.id](https://modelrouter.id)
-- **Program Bansos AI:** [https://modelrouter.id/bansos-ai](https://modelrouter.id/bansos-ai)
-- **Katalog & Tarif Model:** [https://modelrouter.id/models](https://modelrouter.id/models)
-- **Dokumentasi Lengkap:** [https://modelrouter.id/docs](https://modelrouter.id/docs)
-- **Bantuan & Customer Support:** [https://modelrouter.id/support](https://modelrouter.id/support)
-- **Channel Update Telegram:** [https://t.me/modelrouter_info](https://t.me/modelrouter_info)
+- 🌐 Website: [https://modelrouter.id](https://modelrouter.id)
+- 🎁 Bansos AI: [https://modelrouter.id/bansos-ai](https://modelrouter.id/bansos-ai)
+- 📋 Katalog Model Lengkap: [https://modelrouter.id/models](https://modelrouter.id/models)
+- 📖 Dokumentasi Lengkap: [https://modelrouter.id/docs](https://modelrouter.id/docs)
+- 💬 Bantuan & CS: [https://modelrouter.id/support](https://modelrouter.id/support)
+- 📢 Komunitas & Update: [Telegram Channel](https://t.me/modelrouter_info) | [Grup Diskusi](https://t.me/modelroutergrup)
